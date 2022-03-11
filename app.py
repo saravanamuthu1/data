@@ -1,26 +1,22 @@
-from calendar import TUESDAY
-from pip import main
 import streamlit as st
 import pandas as pd
 import numpy as np
-"""
-uplaod file
-"""
+#upload file 
 st.title("my data app")
 st.write(""" upload csv file """)
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
      # Can be used wherever a "file-like" object is accepted:
     df1 = pd.read_csv(uploaded_file)
-    """
-    fill the data
-    """
+    #fill data with zeros for null values
     df1=df1.fillna(0)
-
+"""
+check box function
+"""
+def check_box():
     """
     check box function
     """
-def check_box():
     if st.checkbox('describe the data'):
         st.subheader('desscribe values')
         st.write(df1.describe())
@@ -32,8 +28,13 @@ def check_box():
         st.checkbox(column)
     for column in df1.columns:
         st.line_chart(df1[column])
-
+"""
+   delete column function
+"""
 def delete_column():
+    """
+     delete column function
+    """
     text_input1=st.text_input("do you want to delete columns")
     if(text_input1 == "yes"):
         if(type(text_input1) == str):
@@ -45,5 +46,3 @@ def delete_column():
 if __name__ =="__main__":
     check_box()
     delete_column()
-
-
