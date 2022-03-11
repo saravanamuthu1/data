@@ -1,12 +1,13 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+
 #upload file 
 st.title("my data app")
 st.write(""" upload csv file """)
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
-     # Can be used wherever a "file-like" object is accepted:
+    # Can be used wherever a "file-like" object is accepted:
     df1 = pd.read_csv(uploaded_file)
     #fill data with zeros for null values
     df1=df1.fillna(0)
